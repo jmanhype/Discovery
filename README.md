@@ -40,16 +40,40 @@ This is an AI agent simulation project that demonstrates the collaboration, inte
 
 1. Install the required packages:
 
-   ```
+   ```bash
    pip install -r requirements.txt
    ```
 
-2. Update the `openai.api_key` with your OpenAI API key in the `main.py` script.
+2. Set your OpenAI API key as an environment variable:
+
+   **Linux/macOS:**
+   ```bash
+   export OPENAI_API_KEY='your-api-key-here'
+   ```
+
+   **Windows (Command Prompt):**
+   ```cmd
+   set OPENAI_API_KEY=your-api-key-here
+   ```
+
+   **Windows (PowerShell):**
+   ```powershell
+   $env:OPENAI_API_KEY='your-api-key-here'
+   ```
+
+   Alternatively, create a `.env` file in the project root:
+   ```
+   OPENAI_API_KEY=your-api-key-here
+   ```
 
 3. Run the `main.py` script:
 
-   ```
+   ```bash
    python main.py
    ```
 
 This will initialize the simulation and run it until the termination condition is met. The interface will display the state of the simulation and agent interactions in real time.
+
+## Security Note
+
+**Important:** Never commit your API keys to version control. Always use environment variables or a `.env` file (which should be added to `.gitignore`).

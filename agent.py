@@ -1,6 +1,15 @@
 import openai
 import random
+import time
+import requests
 from datetime import datetime
+from sklearn.linear_model import SGDClassifier
+from sklearn.utils import shuffle
+import pandas as pd
+import numpy as np
+import torch
+from torch import nn, optim
+
 from language_understanding_module import LanguageUnderstandingModule
 from probabilistic_reasoning_module import ProbabilisticReasoningModule
 from multimodal_processing_module import MultiModalProcessingModule
@@ -17,17 +26,6 @@ from online_learning_module import OnlineLearningModule
 from transfer_learning_module import TransferLearningModule
 from theory_of_mind import TheoryOfMind
 from active_learning_module import ActiveLearningModule
-import time
-import requests
-import random
-from datetime import datetime
-from sklearn.linear_model import SGDClassifier
-import pandas as pd
-from sklearn.utils import shuffle
-import pandas as pd
-import numpy as np
-import torch
-from torch import nn, optim
 
 class SomeDataSource:
     def __init__(self, df):
