@@ -14,11 +14,10 @@ class Simulation:
 
     def __init__(self, api_key, agent_count):
         # Initialize the API
-        openai.api_key = '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'
+        openai.api_key = api_key
 
         # Initialize the Language Understanding Module with the specified model
         model_name = "Helsinki-NLP/opus-mt-en-ROMANCE"  # Model for English to French translation
-        openai.api_key = api_key
         self.language_module = LanguageUnderstandingModule(api_key)
 
         self.reasoning_module = ProbabilisticReasoningModule()
@@ -27,7 +26,7 @@ class Simulation:
         self.world_state = WorldState()
 
         # Create agents for the simulation with diverse personalities
-        self.agents = [Agent(self.language_module, self.reasoning_module.probabilistic_programming_language, api_key, personality, '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', id) for id, personality in enumerate(self.generate_personalities(agent_count))]
+        self.agents = [Agent(self.language_module, self.reasoning_module.probabilistic_programming_language, api_key, personality, api_key, id) for id, personality in enumerate(self.generate_personalities(agent_count))]
         
 
 
@@ -71,15 +70,15 @@ class Simulation:
     def execute(self):
         # The main execution loop of the simulation
         print("Starting simulation...\n")
-        
+
         while not self.termination_condition():
             self.update_simulation_state()
 
             # Get user input from GUI
             user_input = self.gui.get_user_input()
-        if user_input is not None:
-            user_result = self.handle_user_input(user_input)
-            print(f"User input result: {user_result}")
+            if user_input is not None:
+                user_result = self.handle_user_input(user_input)
+                print(f"User input result: {user_result}")
 
             # Update GUI
             self.gui.update(self.world_state, self.agents)
@@ -88,8 +87,10 @@ class Simulation:
             self.performance_metrics.update(self.agents)
 
             # Interact with other agents - call the query_other_agents method
-            if some_interaction_condition_met:
-                self.query_other_agents(querying_agent_id, queried_agent_id)
+            # Note: some_interaction_condition_met is not defined - this code will not execute
+            # TODO: Define interaction conditions properly
+            # if some_interaction_condition_met:
+            #     self.query_other_agents(querying_agent_id, queried_agent_id)
 
             # Increment the tick counter
             self.ticks += 1

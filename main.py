@@ -5,10 +5,14 @@ from language_understanding_module import LanguageUnderstandingModule
 from probabilistic_reasoning_module import ProbabilisticReasoningModule
 import openai
 import random
+import os
 
 def main():
     # Initialize OpenAI's API
-    openai.api_key = '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'
+    openai.api_key = os.environ.get('OPENAI_API_KEY')
+
+    if not openai.api_key:
+        raise ValueError("OPENAI_API_KEY environment variable is not set. Please set it before running the simulation.")
         
     # Initialize the language understanding module with the api_key
     language_module = LanguageUnderstandingModule(openai.api_key)
